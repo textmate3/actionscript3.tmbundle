@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby18 -wKU
+#!/usr/bin/env ruby -w
 
 # Used as a common require to set up the environment for snippets.
 $: << File.expand_path(File.dirname(__FILE__))

@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby18 -wKU
+#!/usr/bin/env ruby -w
 # encoding: utf-8
 
 SUPPORT = ENV['TM_SUPPORT_PATH']

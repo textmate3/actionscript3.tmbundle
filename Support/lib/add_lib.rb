@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby18 -wKU
+#!/usr/bin/env ruby -w
 # encoding: utf-8
 
 # This adds our path to rubys lookup list. So wherever we require items from

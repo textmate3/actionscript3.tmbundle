@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby18 -wKU
+#!/usr/bin/env ruby -w
 # encoding: utf-8
 
 # ActionScript 3 utility methods for inspecting source directories, paths and

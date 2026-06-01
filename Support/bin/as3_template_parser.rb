@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby18 -wKU
+#!/usr/bin/env ruby -w
 # encoding: utf-8
 
 require File.expand_path(File.dirname(__FILE__)) + '/../lib/add_lib'
