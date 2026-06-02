@@ -169,7 +169,7 @@ module FlexMate
 
         require ENV['TM_SUPPORT_PATH'] + '/lib/textmate'
 
-        if File.exists?(flex_config)
+        if File.exist?(flex_config)
           TextMate.go_to(:file => flex_config)
         else
           TextMate.exit_show_tool_tip('Unable to locate Flex SDK and it\'s associated flex-config.xml file.')

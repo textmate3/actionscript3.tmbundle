@@ -57,7 +57,7 @@ module FlexMate
           Dir.entries(template_dir).each { |filename|
             next if filename =~ filter
             template_path = template_dir+'/'+filename+'/'+template_name
-            if File.exists? template_path
+            if File.exist? template_path
               title = filename.sub('.tmTemplate','')
               id = "#{bundle_name}/#{title}"
               unless stored.include?(id)

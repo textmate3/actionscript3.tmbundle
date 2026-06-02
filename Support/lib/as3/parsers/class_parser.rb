@@ -588,7 +588,7 @@ class ClassParser
         end
 
         #FIX: The assumption that we'll only find one match.
-        if File.exists?(as_uri)
+        if File.exist?(as_uri)
 
           @loaded_documents << as_uri
           f = File.open(as_uri,"r" ).read.strip
@@ -596,7 +596,7 @@ class ClassParser
           return strip_comments(f)
 
         #where we find a mxml file exit and tell the user why.
-        elsif File.exists?("#{uri}.mxml")
+        elsif File.exist?("#{uri}.mxml")
 
           mxml_file = File.basename("#{uri}.mxml")
           log_append("Failing with '#{mxml_file}' as we need an mxml parser first - anyone?")
@@ -1118,9 +1118,9 @@ class ClassParser
         as = "#{uri}.as"
         mx = "#{uri}.mxml"
 
-        if File.exists?(as)
+        if File.exist?(as)
           existing_paths << as
-        elsif File.exists?(mx)
+        elsif File.exist?(mx)
           existing_paths << mx
         end
 

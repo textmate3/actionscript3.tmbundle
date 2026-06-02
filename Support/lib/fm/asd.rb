@@ -152,7 +152,7 @@ class LangReference
   end
 
   def usable
-    File.exists?(@toc) && File.exists?(@path)
+    File.exist?(@toc) && File.exist?(@path)
   end
 
   protected
