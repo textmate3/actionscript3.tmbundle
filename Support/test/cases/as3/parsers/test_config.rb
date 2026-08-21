@@ -75,6 +75,18 @@ end
 
 class TestConfigUtil < Test::Unit::TestCase
 
+  # ConfigUtil#find reads TM_PROJECT_DIRECTORY, which TextMate sets for
+  # commands running inside the editor. Pin it for a deterministic run and
+  # restore whatever was there so other cases in the suite are unaffected.
+  def setup
+    @original_project_directory = ENV['TM_PROJECT_DIRECTORY']
+    ENV['TM_PROJECT_DIRECTORY'] = '/fake/project'
+  end
+
+  def teardown
+    ENV['TM_PROJECT_DIRECTORY'] = @original_project_directory
+  end
+
   def test_find_mxml_config
     cu = ConfigUtil.new
     ENV['TM_FLEX_FILE_SPECS'] = 'src/Foo.mxml'
