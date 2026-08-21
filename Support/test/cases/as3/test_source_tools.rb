@@ -80,28 +80,28 @@ class TestSourceTools < Test::Unit::TestCase
 
     r = SourceTools.search_project_paths('Mov')
 
-    assert_equal('flash.display.MovieClip', r[:partial_matches].to_s)
-    assert_equal('', r[:exact_matches].to_s)
+    assert_equal('flash.display.MovieClip', r[:partial_matches].join("|"))
+    assert_equal('', r[:exact_matches].join("|"))
 
     r = SourceTools.search_project_paths('MovieClip')
 
-    assert_equal('', r[:partial_matches].to_s)
-    assert_equal('flash.display.MovieClip', r[:exact_matches].to_s)
+    assert_equal('', r[:partial_matches].join("|"))
+    assert_equal('flash.display.MovieClip', r[:exact_matches].join("|"))
 
     r = SourceTools.search_project_paths('Event')
 
-    assert_equal('flash.events.EventDispatcher|flash.events.EventPhase', r[:partial_matches].join('|'))
-    assert_equal('flash.events.Event', r[:exact_matches].to_s)
+    assert_equal('flash.events.EventPhase|flash.events.EventDispatcher', r[:partial_matches].join('|'))
+    assert_equal('flash.events.Event', r[:exact_matches].join("|"))
 
     r = SourceTools.search_project_paths('Math')
 
-    assert_equal('', r[:partial_matches].to_s)
-    assert_equal('Math', r[:exact_matches].to_s)
+    assert_equal('', r[:partial_matches].join("|"))
+    assert_equal('Math', r[:exact_matches].join("|"))
 
     r = SourceTools.search_project_paths('E')
 
     assert_equal(13, r[:partial_matches].length)
-    assert_equal('', r[:exact_matches].to_s)
+    assert_equal('', r[:exact_matches].join("|"))
 
   end
 
@@ -111,28 +111,28 @@ class TestSourceTools < Test::Unit::TestCase
 
     r = SourceTools.search_bundle_paths('Mov')
 
-    assert_equal('flash.display.MovieClip|mx.core.MovieClipAsset|mx.core.MovieClipLoaderAsset|mx.effects.Move|mx.effects.effectClasses.MoveInstance|mx.events.MoveEvent', r[:partial_matches].join('|'))
-    assert_equal('', r[:exact_matches].to_s)
+    assert_equal('flash.display.MovieClip|mx.controls.MovieClipSWFLoader|mx.core.MovieClipAsset|mx.core.MovieClipLoaderAsset|mx.effects.effectClasses.MoveInstance|mx.effects.Move|mx.events.MoveEvent|flashx.textLayout.operations.MoveChildrenOperation|spark.effects.Move|spark.effects.Move3D', r[:partial_matches].join('|'))
+    assert_equal('', r[:exact_matches].join("|"))
 
     r = SourceTools.search_bundle_paths('MovieClip')
 
-    assert_equal('mx.core.MovieClipAsset|mx.core.MovieClipLoaderAsset', r[:partial_matches].join('|'))
-    assert_equal('flash.display.MovieClip', r[:exact_matches].to_s)
+    assert_equal('mx.controls.MovieClipSWFLoader|mx.core.MovieClipAsset|mx.core.MovieClipLoaderAsset', r[:partial_matches].join('|'))
+    assert_equal('flash.display.MovieClip', r[:exact_matches].join("|"))
 
     r = SourceTools.search_bundle_paths('Event')
 
-    assert_equal('flash.events.EventDispatcher|flash.events.EventPhase|mx.core.EventPriority', r[:partial_matches].join('|'))
-    assert_equal('flash.events.Event', r[:exact_matches].to_s)
+    assert_equal('flash.events.EventDispatcher|flash.events.EventPhase|mx.core.EventPriority|mx.events.EventListenerRequest', r[:partial_matches].join('|'))
+    assert_equal('flash.events.Event', r[:exact_matches].join("|"))
 
     r = SourceTools.search_bundle_paths('Math')
 
-    assert_equal('', r[:partial_matches].to_s)
-    assert_equal('Math', r[:exact_matches].to_s)
+    assert_equal('', r[:partial_matches].join("|"))
+    assert_equal('Math', r[:exact_matches].join("|"))
 
     r = SourceTools.search_bundle_paths('E')
 
-    assert_equal(23, r[:partial_matches].length)
-    assert_equal('', r[:exact_matches].to_s)
+    assert_equal(35, r[:partial_matches].length)
+    assert_equal('', r[:exact_matches].join("|"))
 
   end
 
@@ -144,28 +144,28 @@ class TestSourceTools < Test::Unit::TestCase
 
     r = SourceTools.search_all_paths('Mov')
 
-    assert_equal('flash.display.MovieClip|mx.core.MovieClipAsset|mx.core.MovieClipLoaderAsset|mx.effects.Move|mx.effects.effectClasses.MoveInstance|mx.events.MoveEvent', r[:partial_matches].join('|'))
-    assert_equal('', r[:exact_matches].to_s)
+    assert_equal('flash.display.MovieClip|mx.controls.MovieClipSWFLoader|mx.core.MovieClipAsset|mx.core.MovieClipLoaderAsset|mx.effects.effectClasses.MoveInstance|mx.effects.Move|mx.events.MoveEvent|flashx.textLayout.operations.MoveChildrenOperation|spark.effects.Move|spark.effects.Move3D', r[:partial_matches].join('|'))
+    assert_equal('', r[:exact_matches].join("|"))
 
     r = SourceTools.search_all_paths('MovieClip')
 
-    assert_equal('mx.core.MovieClipAsset|mx.core.MovieClipLoaderAsset', r[:partial_matches].join('|'))
-    assert_equal('flash.display.MovieClip', r[:exact_matches].to_s)
+    assert_equal('mx.controls.MovieClipSWFLoader|mx.core.MovieClipAsset|mx.core.MovieClipLoaderAsset', r[:partial_matches].join('|'))
+    assert_equal('flash.display.MovieClip', r[:exact_matches].join("|"))
 
     r = SourceTools.search_all_paths('Event')
 
-    assert_equal('flash.events.EventDispatcher|flash.events.EventPhase|mx.core.EventPriority', r[:partial_matches].join('|'))
-    assert_equal('flash.events.Event', r[:exact_matches].to_s)
+    assert_equal('flash.events.EventPhase|flash.events.EventDispatcher|mx.core.EventPriority|mx.events.EventListenerRequest', r[:partial_matches].join('|'))
+    assert_equal('flash.events.Event', r[:exact_matches].join("|"))
 
     r = SourceTools.search_all_paths('Math')
 
-    assert_equal('', r[:partial_matches].to_s)
-    assert_equal('Math', r[:exact_matches].to_s)
+    assert_equal('', r[:partial_matches].join("|"))
+    assert_equal('Math', r[:exact_matches].join("|"))
 
     r = SourceTools.search_all_paths('E')
 
-    assert_equal(26, r[:partial_matches].length)
-    assert_equal('', r[:exact_matches].to_s)
+    assert_equal(38, r[:partial_matches].length)
+    assert_equal('', r[:exact_matches].join("|"))
 
   end
 
