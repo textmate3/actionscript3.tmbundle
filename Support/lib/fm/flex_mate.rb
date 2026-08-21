@@ -295,7 +295,7 @@ module FlexMate
         ::IO.popen(command, 'w+') do |io|
           io << { 'suggestions' => choices }.to_plist
           io.close_write
-          result = OSX::PropertyList.load io rescue nil
+          result = Plist.load io rescue nil
         end
 
         # Use a default block if none was provided

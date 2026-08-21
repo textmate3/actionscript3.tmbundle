@@ -7,7 +7,8 @@
 ################################################################################
 
 require "rexml/document"
-require '/Applications/TextMate.app/Contents/SharedSupport/Support/lib/osx/plist'
+ENV['TM_SUPPORT_PATH'] ||= File.expand_path('../../../bundle-support.tmbundle/Support/shared', __dir__)
+require "#{ENV['TM_SUPPORT_PATH']}/private/plist"
 
 base_path = File.dirname(__FILE__)
 
@@ -84,10 +85,10 @@ create_repository_groups(config.root)
 #trace_node(config.root)
 
 grammar_path = "#{base_path}/../../Syntaxes/Flex Config.tmLanguage"
-@grammar = OSX::PropertyList.load(File.read(grammar_path))
+@grammar = Plist.load(File.read(grammar_path))
 
 def add_group(str)
-  group = OSX::PropertyList.load(str)
+  group = Plist.load(str)
   @grammar['repository'].merge!(group)
 end
 
