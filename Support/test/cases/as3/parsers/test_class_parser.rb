@@ -14,6 +14,11 @@ module ClassParserHelpers
 
   def setup
     ENV['TM_BUNDLE_SUPPORT'] = bundle_support
+    # ClassParser#load_class searches src directories discovered under
+    # TM_PROJECT_DIRECTORY. In the editor the bundle itself was the project,
+    # which put the fixture class tree at assets/cp/src in scope. Pin it so
+    # interface inheritance tests find their parent fixtures from a terminal.
+    ENV['TM_PROJECT_DIRECTORY'] = File.expand_path('../../../assets/cp', __dir__)
   end
 
   def intrinsic_base_path
