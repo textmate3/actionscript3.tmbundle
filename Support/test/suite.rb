@@ -3,14 +3,19 @@
 
 require 'test/unit'
 
-# NOTE: The tests need to pick up the relevant tm ruby lib files from the
-# TextMate support directory so invoke the suite from within TM using Apple-R
-# (and have the Ruby bundle enabled).
+# The cases require the bundle's Support/lib and the shared Bundle Support
+# libraries (TM_SUPPORT_PATH). Inside TextMate both come from the editor via
+# Apple-R. From a terminal this suite provides them itself, defaulting
+# TM_SUPPORT_PATH to the sibling bundle-support.tmbundle checkout, so:
 #
-# Individual test can be targeted in the same way, just open the file and use
-# Apple-R, or Apple-Shift-R.
+#   ruby Support/test/suite.rb
+#
+# works from any working directory.
 
-cases = File.dirname(__FILE__) + "/cases"
+$:.unshift File.expand_path('../lib', __dir__)
+ENV['TM_SUPPORT_PATH'] ||= File.expand_path('../../../bundle-support.tmbundle/Support/shared', __dir__)
+
+cases = __dir__ + "/cases"
 
 tests =  Dir["#{cases}/test_*.rb"]
 tests << Dir["#{cases}/as3/test_*.rb"]
