@@ -1,6 +1,6 @@
 # Notes — test suite modernization (2026-08-20)
 
-Sixth `test_modernization` quest (pattern origin and index of quests: `taskmate.tmbundle/_NOTES.md`). The largest suite so far: a custom `suite.rb` runner over 18 case files covering the FlexMate build system (`fm/`) and the ActionScript 3 tooling (`as3/`), including parsers for classes, interfaces, manifests, MXML, and binary SWF (Shockwave Flash) files.
+Findings from modernizing this bundle's test suite (the working pattern is described in `taskmate.tmbundle/_NOTES.md`). The suite is a custom `suite.rb` runner over 18 case files covering the FlexMate build system (`fm/`) and the ActionScript 3 tooling (`as3/`), including parsers for classes, interfaces, manifests, MXML, and binary SWF (Shockwave Flash) files.
 
 ## Result
 
@@ -16,7 +16,7 @@ The suite self-configures: it puts `Support/lib` on the load path and defaults `
 - `String#[]` and `slice!` returned Integer bytes in 1.8 but 1-character Strings since 1.9: the SWF binary parser fed characters to `sprintf` where it needed byte values. Fixed with `.ord`, plus `File.binread` replacing a text-mode read that corrupted the compressed body. The parser also had a since-birth latent bug computing an alpha channel from a byte that a SetBackgroundColor tag never carries.
 - `Array#to_s` stopped meaning join: `property_inspector.rb` reassembled scanned characters with `to_s`, so every property chain lookup returned an inspect string and then nil. All 15 TestPropertyInspector failures had this one root cause. The source tools tests used the same idiom in assertions.
 
-**Environment contracts (the gtdalt lesson, four more times):**
+**Invisible environment contracts (tests assuming variables and machine state that only exist in-editor):**
 
 - `test_config`: `ConfigUtil#find` reads `TM_PROJECT_DIRECTORY` and raised on nil. Pinned in setup with teardown restore. The library itself still has `ENV['TM_PROJECT_DIRECTORY']+'/' || ''` with the uselessly bound or, working in-editor only because TextMate always sets the variable.
 - `test_class_parser`: `load_class` discovers source directories by running find under `TM_PROJECT_DIRECTORY`. In the editor the bundle itself was the project, which put the fixture class tree `assets/cp/src` in scope at exactly find's depth limit. Pinned to the fixture tree.
