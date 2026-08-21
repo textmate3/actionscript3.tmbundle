@@ -76,7 +76,7 @@ class Swf
     @bits = ""
 
     @file = File.basename(f)
-    @buffer = File.new(f,"r").read
+    @buffer = File.binread(f)
 
     @signature = "" << @buffer.slice!(0..2)
 
@@ -84,7 +84,7 @@ class Swf
 
     @zip = @signature =~ /^C/ ? true : false
 
-    @version = @buffer.slice!(0).to_i
+    @version = @buffer.slice!(0).ord
 
     @file_length = @buffer.slice!(0..3).unpack('v')[0]
 
@@ -170,7 +170,7 @@ class Swf
   def getBits(n)
     bytes = (n/8.0).ceil
     (0...bytes).each {
-      @bits << sprintf("%08b", @buffer.slice!(0))
+      @bits << sprintf("%08b", @buffer.slice!(0).ord)
     }
     out = @bits[0...n].to_i(2);
     @bits = @bits[n..-1]
