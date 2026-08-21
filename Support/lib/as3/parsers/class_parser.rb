@@ -122,7 +122,7 @@ class ClassParser
     method_scans = []
     static_method_scans = []
 
-    doc.each do |line|
+    doc.each_line do |line|
 
       if line =~ @pri.vars
         @properties << $3.to_s
@@ -259,7 +259,7 @@ class ClassParser
     method_scans = []
     static_method_scans = []
 
-    doc.each do |line|
+    doc.each_line do |line|
 
       if line =~ @pro.vars
 
@@ -309,7 +309,7 @@ class ClassParser
     log_append( "Adding ancestor (p) " + @depth.to_s )
     method_scans = []
 
-    doc.each do |line|
+    doc.each_line do |line|
 
       if @include_metadata
         if line =~ @pub.effects
@@ -353,7 +353,7 @@ class ClassParser
     log_append( "Adding ancestor (i) " + @depth.to_s )
 
     method_scans = []
-    doc.each do |line|
+    doc.each_line do |line|
 
       if line =~ @i_face.getsets
           @getsets << $2.to_s
@@ -379,7 +379,7 @@ class ClassParser
 
     static_method_scans = []
 
-    doc.each do |line|
+    doc.each_line do |line|
 
       if line =~ @pub_stat.vars
         @static_properties << $4.to_s
@@ -575,7 +575,7 @@ class ClassParser
   #
   def load_class(paths)
 
-    @src_dirs.each do |d|
+    @src_dirs.each_line do |d|
 
       paths.each do |path|
 
@@ -643,7 +643,7 @@ class ClassParser
     wild = /^\s*import\s*([\w.]+)\*/
 
     # Collect all wildcard imports here.
-    doc.each do |line|
+    doc.each_line do |line|
        possible_paths << $1.gsub(".","/")+class_name if line =~ wild
       possible_paths << $1.gsub(".","/")+"/"+class_name if line =~ pckg
       break if line =~ cls
@@ -696,7 +696,7 @@ class ClassParser
     # a file IF there's no private classes. Otherwise we could increment the caret
     # position by the number of lines added?
 
-    doc.each do |line|
+    doc.each_line do |line|
       if line =~ /^\s*include\s+"([\w.\/]+)";$/
         include_path = File.dirname(uri)+"/#{$1}"
         log_append("WARNING #include not loaded " + include_path)
@@ -1110,7 +1110,7 @@ class ClassParser
     create_src_list()
     existing_paths = []
 
-    @src_dirs.each do |d|
+    @src_dirs.each_line do |d|
 
       paths.flatten.uniq.each do |path|
 
