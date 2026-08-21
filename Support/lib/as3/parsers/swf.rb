@@ -118,9 +118,12 @@ class Swf
         # ShowFrame
       elsif(id == 9)
         # Background Colour
-        @bg_color = sprintf("#%02X%02X%02X", tag[:data][0], tag[:data][1], tag[:data][2])
+        @bg_color = sprintf("#%02X%02X%02X", tag[:data][0].ord, tag[:data][1].ord, tag[:data][2].ord)
         # Background Colour with Alpha
-        @bg_color_a = @bg_color + sprintf("%02X", tag[:data][3])
+        # A SetBackgroundColor tag carries exactly three bytes (RGB), so the
+        # alpha byte is normally absent and @bg_color_a stays nil.
+        alpha = tag[:data][3]
+        @bg_color_a = @bg_color + sprintf("%02X", alpha.ord) if alpha
       elsif(id == 69)
         # FileAttributes
         #puts tag[:data]
