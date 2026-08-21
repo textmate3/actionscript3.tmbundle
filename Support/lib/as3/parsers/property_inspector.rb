@@ -80,7 +80,7 @@ module PropertyInspector
 
           if nests == 0
 
-            if bracket_contents.reverse.to_s =~ as_regexp
+            if bracket_contents.reverse.join =~ as_regexp
               found << $1
             end
             bracket_contents = []
@@ -104,14 +104,14 @@ module PropertyInspector
 
     # Search for casting.
     if found.empty?
-      if bracket_contents.reverse.to_s =~ as_regexp
+      if bracket_contents.reverse.join =~ as_regexp
         return $1
       end
     end
 
     return nil if found.empty?
 
-    chain = found.to_s
+    chain = found.join
     chain.chop! if chain =~ /\.$/
 
     return nil if chain == ""
