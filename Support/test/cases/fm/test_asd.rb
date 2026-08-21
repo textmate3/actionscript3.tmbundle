@@ -42,6 +42,7 @@ class TestFlexLangReference < TestLangReference
   end
   
   def test_single_hit_find
+    return unless can_test
     c = 'AVM1Movie'
     r = FlexLangReference.new
     f = r.search(c)
@@ -113,6 +114,7 @@ class TestFlashCS4LangReference < TestLangReference
   end
   
   def test_single_hit_find
+    return unless can_test
     c = "AVM1Movie"
     r = FlashCS4LangReference.new
     f = r.search(c)
