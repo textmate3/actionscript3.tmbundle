@@ -759,10 +759,10 @@
 			<key>comment</key>
 			<string>These should obviously be scoped to actionscript.4 but for now it is easier to stay with 3.
 		    Otherwise we need to add the scopes into any commands using them.
-		    
+
 		    var v:Vector.&lt;String&gt;;
             v = new Vector.&lt;String&gt;();
-		    
+
 		    </string>
 			<key>end</key>
 			<string>&gt;</string>
@@ -835,7 +835,7 @@
 			<key>comment</key>
 			<string>Supporting ActionScript files that contain loose code is a big headache, and may well be impossible to do
 			if we want to keep all the goodies provided by the package, class and method level scopes. So without spending too
-			much time on this I can only think of imposing arbitary begin and end patters where users want to see syntax colouring
+			much time on this I can only think of imposing arbitary begin and end patters where users want to see syntax coloring
 			within include files.</string>
 			<key>contentName</key>
 			<string>meta.included.actionscript.3</string>
@@ -935,7 +935,7 @@
 			</dict>
 			<key>comment</key>
 			<string>Using a separate definition for interfaces as they use multiple extends statements.
-					   Relies, luckily, on the fact that an interface doesnt contain any sub blocks to avoid problems with the 
+					   Relies, luckily, on the fact that an interface doesnt contain any sub blocks to avoid problems with the
 					   language definition and clashing scopes.</string>
 			<key>end</key>
 			<string>\}</string>
@@ -1243,7 +1243,7 @@
 			</dict>
 			<key>comment</key>
 			<string>matches: public function functionName():returnType;
-					   TODO, currently looking for a way to avoid having to use a 
+					   TODO, currently looking for a way to avoid having to use a
 					   semicolon to terminate the line ending.
 					   (trouble being mulitline parameters).</string>
 			<key>end</key>
@@ -2287,7 +2287,7 @@
 				</dict>
 				<dict>
 					<key>comment</key>
-					<string>This follows the convention that underscores or, less often, 
+					<string>This follows the convention that underscores or, less often,
 					           dollars identify private and protected variable names.</string>
 					<key>match</key>
 					<string>((\$|\b_)\w+?)\b</string>
